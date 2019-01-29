@@ -11,3 +11,4 @@
 - [] proper documentation
 - [] unit tests
 - [] add tournament and round tables to keep track of matches belonging to different events
+- [] add ability to quickly switch between different database files and configurations
