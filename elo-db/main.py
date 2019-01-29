@@ -134,7 +134,7 @@ def main():
     record_match('name1', 'name2', 4, 2)
 
     db.close()
-    
+
     print('end')
 
 
