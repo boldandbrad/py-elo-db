@@ -1,0 +1,14 @@
+# IDE
+.vscode
+
+# Python
+__pycache__
+
+# Venv
+/venv
+
+# Sqlite 3 DB
+.db
+
+# Bull
+*.DS_Store

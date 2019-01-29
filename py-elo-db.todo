@@ -1,0 +1,12 @@
+- [] create setup.py
+- [] implement command line util and usage
+- [] add usages to readme
+- [] convert readme to python standard .rst
+- [] implement output util
+- [] implement match number
+- [] implement method to recalculate elos from beginning or from specific match
+- [] implement ability to update a match
+- [] add end of match elo scores to match table
+- [] implement player rank
+- [] proper documentation
+- [] unit tests
