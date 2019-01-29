@@ -8,7 +8,7 @@ __pycache__
 /venv
 
 # Sqlite 3 DB
-.db
+*.db
 
 # Bull
 *.DS_Store
