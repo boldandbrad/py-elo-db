@@ -136,7 +136,8 @@ def record_match_file(filename: str) -> None:
         for line in f:
             words = line.split()
             if len(words) == 5 and words[4] == 'SD':
-                record_match(words[0], words[3], int(words[1]), int(words[2]), True)
+                record_match(words[0], words[3], int(words[1]), int(words[2]),
+                             True)
             else:
                 record_match(words[0], words[3], int(words[1]), int(words[2]))
 
@@ -144,7 +145,8 @@ def record_match_file(filename: str) -> None:
 def main(argv):
 
     try:
-        opts, args = getopt.getopt(argv, "hvm:f:", ["version",
+        opts, args = getopt.getopt(argv, "hvm:f:", ["help",
+                                                    "version",
                                                     "match=",
                                                     "file=",
                                                     "stats",
@@ -158,7 +160,7 @@ def main(argv):
     db_util.create_tables()
 
     for opt, arg in opts:
-        if opt == '-h':
+        if opt in ("-h", "--help"):
             out_util.print_help()
             sys.exit()
         elif opt in ("-m", "--match"):
