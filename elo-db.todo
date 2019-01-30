@@ -10,4 +10,3 @@
 - [] unit tests
 - [] add tournament and round tables to keep track of matches belonging to different events
 - [] add ability to quickly switch between different database files and configurations
-- [] fix lambda error on ordering players with 0 losses in print_stats

@@ -23,9 +23,9 @@ def print_no_file(path: str):
 
 
 def print_stats(players: Any):
-    # TODO: fix lambda issue where player has 0 losses
     player_list = sorted(players,
-                         key=lambda player: player.wins / player.losses,
+                         key=lambda player:
+                         round(player.wins / (player.wins + player.losses), 3),
                          reverse=True)
 
     print()
