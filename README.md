@@ -7,7 +7,7 @@ py-elo is a python tool for calculating and storing elo values in a sqlite datab
 - activate your virtualenv
 - run: 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Usage
