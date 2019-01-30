@@ -7,8 +7,7 @@ py-elo is a python tool for calculating and storing elo values and statistics fo
 
 ## Installation
 - clone repository
-- requirements.txt is located
-- activate your virtualenv
+- create and activate a virtualenv
 - run: 
 ```bash
 pip3 install -r requirements.txt
