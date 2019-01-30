@@ -1,14 +1,16 @@
+import getopt
 import math
+import os.path
+import sys
 
 from peewee import *
 
 from model.base import db
 from model.match import Match
 from model.player import Player
-from service import match_service
-from service import player_service
+from service import match_service, player_service
 from typing import Any, Tuple
-from util import db_util
+from util import db_util, out_util
 
 PRECISION = 1
 K_FACTOR = 30
@@ -125,18 +127,50 @@ def record_match(home_name: str, away_name: str, home_score: int,
     match_service.save(match)
 
 
-def main():
-    print('start')
+# Records new matches from a match file
+def record_match_file(filename: str) -> None:
+    with open(filename, 'r') as f:
+        for line in f:
+            words = line.split()
+            new_match(words[0], words[3], int(words[1]), int(words[2]))
+
+
+def main(argv):
+
+    try:
+        opts, args = getopt.getopt(argv, "hm:f:", ["match=", "file="])
+    except getopt.GetoptError:
+        out_util.print_help()
+        sys.exit(2)
 
     db.connect()
     db_util.create_tables()
 
-    record_match('name1', 'name2', 4, 2)
+    for opt, arg in opts:
+        if opt == '-h':
+            out_util.print_help()
+            sys.exit()
+        elif opt in ("-m", "--match"):
+            match = str.split(arg)
+            if len(match) is 4 and match[1].isdigit() and match[2].isdigit():
+                record_match(match[0], match[3], int(match[1]), int(match[2]))
+            elif (len(match) is 5 and match[1].isdigit() and
+                    match[2].isdigit() and match[4].lower is 'ot'):
+                record_match(match[0], match[3], int(match[1]), int(match[2]),
+                             True)
+            else:
+                out_util.print_help()
+                sys.exit()
+        elif opt in ("-f", "--file"):
+            if (os.path.isfile(arg)):
+                record_match_file(arg)
+            else:
+                out_util.print_no_file(arg)
+                sys.exit()
 
     db.close()
-
     print('end')
 
 
 if (__name__ == '__main__'):
-    main()
+    main(sys.argv[1:])
