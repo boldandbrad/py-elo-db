@@ -1,7 +1,7 @@
 from typing import Any
 
 
-def print_help():
+def print_help() -> None:
     print()
     print('py-elo-db -help:\n')
     print('- Record new match')
@@ -18,13 +18,12 @@ def print_help():
     print()
 
 
-def print_no_file(path: str):
+def print_no_file(path: str) -> None:
     print('file does not exist:', path)
 
 
-def print_stats(players: Any):
-    player_list = sorted(players,
-                         key=lambda player:
+def print_stats(players: Any) -> None:
+    player_list = sorted(players, key=lambda player:
                          round(player.wins / (player.wins + player.losses), 3),
                          reverse=True)
 
@@ -40,7 +39,7 @@ def print_stats(players: Any):
     print()
 
 
-def print_ratings(players: Any):
+def print_ratings(players: Any) -> None:
     player_list = sorted(players, key=lambda player: player.elo, reverse=True)
 
     print()
@@ -52,7 +51,7 @@ def print_ratings(players: Any):
     print()
 
 
-def print_matches(matches: Any):
+def print_matches(matches: Any) -> None:
     print()
     print('Matches')
     print('-------------------------')

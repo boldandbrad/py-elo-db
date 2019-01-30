@@ -1,6 +1,6 @@
 from typing import Any
+
 from model.match import Match
-from model.player import Player
 
 
 # Retrieves all matches ordered by number

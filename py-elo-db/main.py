@@ -1,15 +1,13 @@
 import getopt
 import math
-import os.path
+import os
 import sys
-
-from peewee import *
+from typing import Any, Tuple
 
 from model.base import db
 from model.match import Match
 from model.player import Player
 from service import match_service, player_service
-from typing import Any, Tuple
 from util import db_util, out_util
 
 __license__ = "MIT"
@@ -142,7 +140,8 @@ def record_match_file(filename: str) -> None:
                 record_match(words[0], words[3], int(words[1]), int(words[2]))
 
 
-def main(argv):
+# Handles arguments and execution
+def main(argv) -> None:
 
     try:
         opts, args = getopt.getopt(argv, "hvm:f:", ["help",

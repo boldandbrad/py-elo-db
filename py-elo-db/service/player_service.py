@@ -1,4 +1,5 @@
-from typing import Tuple, Any
+from typing import Any, Tuple
+
 from model.player import Player
 
 
