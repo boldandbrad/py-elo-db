@@ -1,8 +1,6 @@
 - [] create setup.py
-- [] implement command line util and usage
 - [] add usages to readme
 - [] convert readme to python standard .rst
-- [] implement output util
 - [] implement match number
 - [] implement method to recalculate elos from beginning or from specific match
 - [] implement ability to update a match
@@ -12,3 +10,4 @@
 - [] unit tests
 - [] add tournament and round tables to keep track of matches belonging to different events
 - [] add ability to quickly switch between different database files and configurations
+- [] fix lambda error on ordering players with 0 losses in print_stats

@@ -191,6 +191,7 @@ def main(argv):
             print('py-elo-db v' + str(__version__))
 
     db.close()
+    sys.exit()
 
 
 if (__name__ == '__main__'):
