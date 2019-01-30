@@ -135,7 +135,7 @@ def record_match_file(filename: str) -> None:
     with open(filename, 'r') as f:
         for line in f:
             words = line.split()
-            if len(words) == 5 and words[4] == 'OT':
+            if len(words) == 5 and words[4] == 'SD':
                 record_match(words[0], words[3], int(words[1]), int(words[2]), True)
             else:
                 record_match(words[0], words[3], int(words[1]), int(words[2]))
