@@ -143,7 +143,10 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hvm:f:", ["version",
                                                     "match=",
-                                                    "file="])
+                                                    "file=",
+                                                    "stats",
+                                                    "matches",
+                                                    "ratings"])
     except getopt.GetoptError:
         out_util.print_help()
         sys.exit(2)
@@ -160,7 +163,7 @@ def main(argv):
             if len(match) is 4 and match[1].isdigit() and match[2].isdigit():
                 record_match(match[0], match[3], int(match[1]), int(match[2]))
             elif (len(match) is 5 and match[1].isdigit() and
-                    match[2].isdigit() and match[4].lower is 'ot'):
+                    match[2].isdigit() and match[4].lower() == 'ot'):
                 record_match(match[0], match[3], int(match[1]), int(match[2]),
                              True)
             else:
@@ -172,6 +175,15 @@ def main(argv):
             else:
                 out_util.print_no_file(arg)
                 sys.exit()
+        elif opt in ("--stats"):
+            players = player_service.get_all_ordered()
+            out_util.print_stats(players)
+        elif opt in ("--ratings"):
+            players = player_service.get_all_ordered()
+            out_util.print_ratings(players)
+        elif opt in ("--matches"):
+            matches = match_service.get_all_ordered()
+            out_util.print_matches(matches)
         elif opt in ("-v", "--version"):
             print('py-elo-db v' + str(__version__))
 
