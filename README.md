@@ -20,7 +20,9 @@ python3 main.py --help
 ```
 
 ## Examples
-The quickest way to get going with py-elo-db is to add the outcome of a match. There is never a need to manually add new players/teams because py-elo-db will automatically store them for you if they don't already exist when you add a match. A match can be added with `-m` or `--match`:
+The quickest way to get going with py-elo-db is to add the outcome of a match. There is never a need to manually add new players/teams because py-elo-db will automatically store them for you if they don't already exist when you add a match.
+
+A match can be added with `-m` or `--match`:
 ```bash
 python3 main.py -m "Bulldogs 4 3 Grizzlies"
 ```
