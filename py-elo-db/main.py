@@ -16,7 +16,7 @@ __license__ = "MIT"
 __version__ = 1.0
 
 PRECISION = 1
-K_FACTOR = 30
+K_FACTOR = 20
 
 
 # Calculate probability
