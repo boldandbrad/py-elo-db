@@ -135,7 +135,7 @@ def record_match_file(filename: str) -> None:
     with open(filename, 'r') as f:
         for line in f:
             words = line.split()
-            new_match(words[0], words[3], int(words[1]), int(words[2]))
+            record_match(words[0], words[3], int(words[1]), int(words[2]))
 
 
 def main(argv):
@@ -188,7 +188,6 @@ def main(argv):
             print('py-elo-db v' + str(__version__))
 
     db.close()
-    print('end')
 
 
 if (__name__ == '__main__'):

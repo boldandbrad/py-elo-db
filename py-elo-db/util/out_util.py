@@ -8,6 +8,12 @@ def print_help():
           '<away_score> <away_name> OT(optional)"')
     print('- Record new match file')
     print('\tmain.py -f <file_path>')
+    print('- Print player stats',
+          '\tmain.py --stats')
+    print('- Print player ratings',
+          '\tmain.py --ratings')
+    print('- Print matches',
+          '\tmain.py --matches')
     print()
 
 
