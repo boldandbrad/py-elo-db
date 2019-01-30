@@ -2,18 +2,19 @@ from typing import Any
 
 
 def print_help():
-    print('py-elo-db help:\n')
+    print()
+    print('py-elo-db -help:\n')
     print('- Record new match')
     print('\tmain.py -m "<home_name> <home_score>',
           '<away_score> <away_name> OT(optional)"')
     print('- Record new match file')
     print('\tmain.py -f <file_path>')
-    print('- Print player stats',
-          '\tmain.py --stats')
-    print('- Print player ratings',
-          '\tmain.py --ratings')
-    print('- Print matches',
-          '\tmain.py --matches')
+    print('- Print player stats')
+    print('\tmain.py --stats')
+    print('- Print player ratings')
+    print('\tmain.py --ratings')
+    print('- Print matches')
+    print('\tmain.py --matches')
     print()
 
 
