@@ -12,6 +12,9 @@ from service import match_service, player_service
 from typing import Any, Tuple
 from util import db_util, out_util
 
+__license__ = "MIT"
+__version__ = 1.0
+
 PRECISION = 1
 K_FACTOR = 30
 
@@ -138,7 +141,9 @@ def record_match_file(filename: str) -> None:
 def main(argv):
 
     try:
-        opts, args = getopt.getopt(argv, "hm:f:", ["match=", "file="])
+        opts, args = getopt.getopt(argv, "hvm:f:", ["version",
+                                                    "match=",
+                                                    "file="])
     except getopt.GetoptError:
         out_util.print_help()
         sys.exit(2)
@@ -167,6 +172,8 @@ def main(argv):
             else:
                 out_util.print_no_file(arg)
                 sys.exit()
+        elif opt in ("-v", "--version"):
+            print('py-elo-db v' + str(__version__))
 
     db.close()
     print('end')

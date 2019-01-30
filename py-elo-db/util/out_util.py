@@ -14,13 +14,13 @@ def print_no_file(path: str):
     print('file does not exist:', path)
 
 
-def print_stats:
+def print_stats():
     pass
 
 
-def print_ratings:
+def print_ratings():
     pass
 
 
-def print_matches:
+def print_matches():
     pass
