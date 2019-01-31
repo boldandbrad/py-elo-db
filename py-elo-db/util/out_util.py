@@ -2,6 +2,7 @@ from typing import Any
 
 
 def print_help() -> None:
+    """Print py-elo-db script usage."""
     print()
     print('py-elo-db -help:\n')
     print('- Record new match')
@@ -19,10 +20,12 @@ def print_help() -> None:
 
 
 def print_no_file(path: str) -> None:
-    print('file does not exist:', path)
+    """Print file does not exist message."""
+    print('\tError - file does not exist:', path)
 
 
 def print_stats(players: Any) -> None:
+    """Print player statistics."""
     player_list = sorted(players, key=lambda player:
                          round(player.wins / (player.wins + player.losses), 3),
                          reverse=True)
@@ -40,6 +43,7 @@ def print_stats(players: Any) -> None:
 
 
 def print_ratings(players: Any) -> None:
+    """Print player elo ratings."""
     player_list = sorted(players, key=lambda player: player.elo, reverse=True)
 
     print()
@@ -52,6 +56,7 @@ def print_ratings(players: Any) -> None:
 
 
 def print_matches(matches: Any) -> None:
+    """Print matches."""
     print()
     print('Matches')
     print('-------------------------')

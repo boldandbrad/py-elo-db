@@ -7,6 +7,7 @@ from .player import Player
 
 
 class Match(Base):
+    """Database schema for Match table."""
     home_player = ForeignKeyField(Player, backref="matches")
     away_player = ForeignKeyField(Player, backref="matches")
     home_score = IntegerField(default=0)

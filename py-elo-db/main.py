@@ -17,15 +17,16 @@ PRECISION = 1
 K_FACTOR = 20
 
 
-# Calculate probability
-def probability(elo_a: float, elo_b: float) -> Tuple[float, float]:
-    prob_a = 1.0 / (1 + 1.0 * math.pow(10, 1.0 * (elo_b - elo_a) / 400))
-    return prob_a, 1.0 - prob_a
+def probability(home_elo: float, away_elo: float) -> Tuple[float, float]:
+    """Calculate probability that either player will win."""
+    home_prob = 1.0 / (1 + 1.0 * math.pow(10, 1.0 *
+                                          (away_elo - home_elo) / 400))
+    return home_prob, 1.0 - home_prob
 
 
-# Calculate score difference weight
-def score_weight(score_a: int, score_b: int) -> float:
-    score_diff = abs(score_a - score_b)
+def score_weight(home_score: int, away_score: int) -> float:
+    """Calculate score difference weight to be applied."""
+    score_diff = abs(home_score - away_score)
 
     if (score_diff == 0 or score_diff == 1):
         return 1
@@ -35,42 +36,39 @@ def score_weight(score_a: int, score_b: int) -> float:
         return (11 + score_diff) / 10
 
 
-# Calculate updated elo rating
 def calculate_elo(elo: float, prob: float, diff: float,
                   outcome: float) -> float:
+    """Calculate a player's new elo rating."""
     return round(elo + ((K_FACTOR * diff) * (outcome - prob)), PRECISION)
 
 
-# Update Elo Ratings
-def update_elos(elo_a: float, elo_b: float, score_a: int,
-                score_b: int) -> Any:
+def update_elos(home_elo: float, away_elo: float, home_score: int,
+                away_score: int) -> Tuple[float, float, float]:
+    """Update both player's elo ratings from match outcome."""
+    orig_home_elo = home_elo
 
-    orig_elo_a = elo_a
+    home_prob, away_prob = probability(home_elo, away_elo)
+    diff = score_weight(home_score, away_score)
 
-    prob_a, prob_b = probability(elo_a, elo_b)
-
-    diff = score_weight(score_a, score_b)
-
-    # player a won
-    if (score_a > score_b):
-        elo_a = calculate_elo(elo_a, prob_a, diff, 1)
-        elo_b = calculate_elo(elo_b, prob_b, diff, 0)
-    # player b won
-    elif (score_a < score_b):
-        elo_a = calculate_elo(elo_a, prob_a, diff, 0)
-        elo_b = calculate_elo(elo_b, prob_b, diff, 1)
+    # home won
+    if (home_score > away_score):
+        home_elo = calculate_elo(home_elo, home_prob, diff, 1)
+        away_elo = calculate_elo(away_elo, away_prob, diff, 0)
+    # away won
+    elif (home_score < away_score):
+        home_elo = calculate_elo(home_elo, home_prob, diff, 0)
+        away_elo = calculate_elo(away_elo, away_prob, diff, 1)
     # draw
     else:
-        elo_a = calculate_elo(elo_a, prob_a, diff, 0.5)
-        elo_b = calculate_elo(elo_b, prob_b, diff, 0.5)
+        home_elo = calculate_elo(home_elo, home_prob, diff, 0.5)
+        away_elo = calculate_elo(away_elo, away_prob, diff, 0.5)
 
-    return elo_a, elo_b, abs(orig_elo_a - elo_a)
+    return home_elo, away_elo, abs(orig_home_elo - home_elo)
 
 
-# Update Traditional Stats
 def update_stats(home_player: Player, away_player: Player,
                  home_score: int, away_score: int) -> None:
-
+    """Update both player's statistics from match outcome."""
     home_player.goals_for += home_score
     home_player.goals_against += away_score
     away_player.goals_for += away_score
@@ -90,17 +88,15 @@ def update_stats(home_player: Player, away_player: Player,
         away_player.draws += 1
 
 
-# Recalculates all elo's from beginning or specific match
-def recalculate():
+def recalculate() -> None:
+    """Recalculate all stats and elos from beginning or specific match."""
     NotImplemented
 
 
-# Adds new match to database and updates Elos
 def record_match(home_name: str, away_name: str, home_score: int,
                  away_score: int, ot: bool=False) -> None:
-
+    """Record new match in database and update players."""
     home_player = player_service.get_or_create_by_name(home_name)
-
     away_player = player_service.get_or_create_by_name(away_name)
 
     home_player.elo, away_player.elo, rating_change = update_elos(
@@ -110,8 +106,7 @@ def record_match(home_name: str, away_name: str, home_score: int,
                                                             away_score
                                                         )
 
-    update_stats(home_player, away_player,
-                 home_score, away_score)
+    update_stats(home_player, away_player, home_score, away_score)
 
     player_service.save(home_player)
     player_service.save(away_player)
@@ -128,8 +123,8 @@ def record_match(home_name: str, away_name: str, home_score: int,
     match_service.save(match)
 
 
-# Records new matches from a match file
 def record_match_file(filename: str) -> None:
+    """Records new matches from a match file."""
     with open(filename, 'r') as f:
         for line in f:
             words = line.split()
@@ -140,9 +135,8 @@ def record_match_file(filename: str) -> None:
                 record_match(words[0], words[3], int(words[1]), int(words[2]))
 
 
-# Handles arguments and execution
 def main(argv) -> None:
-
+    """Handles arguments and script execution."""
     try:
         opts, args = getopt.getopt(argv, "hvm:f:", ["help",
                                                     "version",
@@ -155,9 +149,11 @@ def main(argv) -> None:
         out_util.print_help()
         sys.exit(2)
 
+    # Initialize database
     db.connect()
     db_util.create_tables()
 
+    # Handle arguments
     for opt, arg in opts:
         if opt in ("-h", "--help"):
             out_util.print_help()
@@ -191,6 +187,7 @@ def main(argv) -> None:
         elif opt in ("-v", "--version"):
             print('py-elo-db v' + str(__version__))
 
+    # Close database connection and exit
     db.close()
     sys.exit()
 

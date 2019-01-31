@@ -4,6 +4,7 @@ from .base import Base
 
 
 class Player(Base):
+    """Database schema for Player table."""
     name = CharField(unique=True)
     elo = FloatField(default=1000.0)
     rank = IntegerField(default=0)
