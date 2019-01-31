@@ -7,7 +7,7 @@ def print_help() -> None:
     print('py-elo-db -help:\n')
     print('- Record new match')
     print('\tmain.py -m "<home_name> <home_score>',
-          '<away_score> <away_name> OT(optional)"')
+          '<away_score> <away_name> SD(optional)"')
     print('- Record new match file')
     print('\tmain.py -f <file_path>')
     print('- Print player stats')
@@ -61,10 +61,10 @@ def print_matches(matches: Any) -> None:
     print('Matches')
     print('-------------------------')
     for match in matches:
-        if match.ot:
+        if match.sudden_death:
             print(match.home_player.name,
                   str(match.home_score) + ' - ' + str(match.away_score),
-                  match.away_player.name, 'OT')
+                  match.away_player.name, 'SD')
         else:
             print(match.home_player.name,
                   str(match.home_score) + ' - ' + str(match.away_score),

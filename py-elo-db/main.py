@@ -94,7 +94,7 @@ def recalculate() -> None:
 
 
 def record_match(home_name: str, away_name: str, home_score: int,
-                 away_score: int, ot: bool=False) -> None:
+                 away_score: int, sudden_death: bool=False) -> None:
     """Record new match in database and update players."""
     home_player = player_service.get_or_create_by_name(home_name)
     away_player = player_service.get_or_create_by_name(away_name)
@@ -116,7 +116,7 @@ def record_match(home_name: str, away_name: str, home_score: int,
         away_player=away_player.id,
         home_score=home_score,
         away_score=away_score,
-        ot=ot,
+        sudden_death=sudden_death,
         rating_change=rating_change
     )
 
@@ -163,7 +163,7 @@ def main(argv) -> None:
             if len(match) is 4 and match[1].isdigit() and match[2].isdigit():
                 record_match(match[0], match[3], int(match[1]), int(match[2]))
             elif (len(match) is 5 and match[1].isdigit() and
-                    match[2].isdigit() and match[4].lower() == 'ot'):
+                    match[2].isdigit() and match[4].lower() == 'sd'):
                 record_match(match[0], match[3], int(match[1]), int(match[2]),
                              True)
             else:

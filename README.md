@@ -27,9 +27,9 @@ python3 main.py -m "Bulldogs 4 3 Grizzlies"
 ```
 This will create and store new entries for Bulldogs and Grizzlies in the Player table, as well as a new record in the Match table with the score and other relevant data.
 
-Optionally, you can add `OT` to denote the game went to overtime:
+Optionally, you can add `SD` to denote the game went to sudden death overtime:
 ```bash
-python3 main.py -m "Bulldogs 4 3 Grizzlies OT"
+python3 main.py -m "Bulldogs 4 3 Grizzlies SD"
 ```
 
 
