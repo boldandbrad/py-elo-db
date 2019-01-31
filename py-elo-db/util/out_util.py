@@ -1,5 +1,8 @@
 from typing import Any
 
+from model.match import Match
+from model.player import Player
+
 
 def print_help() -> None:
     """Print py-elo-db script usage."""
@@ -71,3 +74,33 @@ def print_matches(matches: Any) -> None:
                   match.away_player.name)
 
     print()
+
+
+def print_player_create(player: Player) -> None:
+    """Print player created message."""
+    print('...added new player,', player.name, player.elo)
+
+
+def print_player_update(player: Player) -> None:
+    """Print player updated message."""
+    print('...updated player,', player.name, player.elo)
+
+
+def print_player_retrieved(player: Player) -> None:
+    """Print player retrieved message."""
+    print('...retrieved player,', player.name, player.elo)
+
+
+def print_recording_match() -> None:
+    """Print recording new match message."""
+    print('\nRecording new match...')
+
+
+def print_match_recorded(match: Match) -> None:
+    """Print match recorded message."""
+    if (match.sudden_death):
+        print('Matched Recorded,', match.home_player.name, match.home_score,
+              match.away_score, match.away_player.name, 'SD')
+    else:
+        print('Matched Recorded,', match.home_player.name, match.home_score,
+              mathc.away_score, match.away_player.name)

@@ -1,6 +1,7 @@
 from typing import Any, Tuple
 
 from model.player import Player
+from util import out_util
 
 
 def get_all_ordered() -> Any:
@@ -22,9 +23,9 @@ def get_or_create_by_name(name: str) -> Player:
     """Retrieve a player by its name field, create if does not exist."""
     player, created = Player.get_or_create(name=name)
     if (created):
-        print('Created player', player.name)
+        out_util.print_player_create(player)
     else:
-        print('Retrieved player', player.name, player.elo)
+        out_util.print_player_retrieved(player)
     return player
 
 

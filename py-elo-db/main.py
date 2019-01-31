@@ -96,6 +96,8 @@ def recalculate() -> None:
 def record_match(home_name: str, away_name: str, home_score: int,
                  away_score: int, sudden_death: bool=False) -> None:
     """Record new match in database and update players."""
+    out_util.print_recording_match()
+
     home_player = player_service.get_or_create_by_name(home_name)
     away_player = player_service.get_or_create_by_name(away_name)
 
@@ -109,7 +111,10 @@ def record_match(home_name: str, away_name: str, home_score: int,
     update_stats(home_player, away_player, home_score, away_score)
 
     player_service.save(home_player)
+    out_util.print_player_update(home_player)
+
     player_service.save(away_player)
+    out_util.print_player_update(away_player)
 
     match = Match(
         home_player=home_player.id,
@@ -121,6 +126,7 @@ def record_match(home_name: str, away_name: str, home_score: int,
     )
 
     match_service.save(match)
+    out_util.print_match_recorded(match)
 
 
 def record_match_file(filename: str) -> None:
