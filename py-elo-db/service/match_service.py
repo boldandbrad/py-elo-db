@@ -1,14 +1,14 @@
-from typing import Any
+from typing import List
 
 from model.match import Match
 
 
-def get_all_ordered() -> Any:
+def get_all_ordered() -> List[Match]:
     """Retrieve all matches ordered by number field."""
     return Match.select().order_by(+Match.number)
 
 
-def get_all_by_player(player_id: int) -> Any:
+def get_all_by_player(player_id: int) -> List[Match]:
     """Retrieve all of a player's matches by player id field."""
     return Match.select().where(Match.home_player_id == player_id |
                                 Match.away_player_id == player_id)

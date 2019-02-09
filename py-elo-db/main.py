@@ -2,7 +2,7 @@ import getopt
 import math
 import os
 import sys
-from typing import Any, Tuple
+from typing import Tuple
 
 from model.base import db
 from model.match import Match
@@ -17,10 +17,9 @@ PRECISION = 1
 K_FACTOR = 20
 
 
-def probability(home_elo: float, away_elo: float) -> Tuple[float, float]:
-    """Calculate probability that either player will win."""
-    home_prob = 1.0 / (1 + 1.0 * math.pow(10, 1.0 *
-                                          (away_elo - home_elo) / 400))
+def win_probability(home_elo: float, away_elo: float) -> Tuple[float, float]:
+    """Calculate probability that either player will win a match."""
+    home_prob = 1.0 / (1 + math.pow(10, (away_elo - home_elo) / 400))
     return home_prob, 1.0 - home_prob
 
 
@@ -47,7 +46,7 @@ def update_elos(home_elo: float, away_elo: float, home_score: int,
     """Update both player's elo ratings from match outcome."""
     orig_home_elo = home_elo
 
-    home_prob, away_prob = probability(home_elo, away_elo)
+    home_prob, away_prob = win_probability(home_elo, away_elo)
     diff = score_weight(home_score, away_score)
 
     # home won
