@@ -4,11 +4,11 @@ import os
 import sys
 from typing import Tuple
 
-from model.base import db
-from model.match import Match
-from model.player import Player
-from service import match_service, player_service
-from util import db_util, out_util
+from .model.base import db
+from .model.match import Match
+from .model.player import Player
+from .service import match_service, player_service
+from .util import db_util, out_util
 
 __license__ = "MIT"
 __version__ = 1.0
