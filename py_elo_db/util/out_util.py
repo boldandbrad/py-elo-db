@@ -1,7 +1,7 @@
 from typing import List
 
-from model.match import Match
-from model.player import Player
+from py_elo_db.model.match import Match
+from py_elo_db.model.player import Player
 
 
 def print_help() -> None:

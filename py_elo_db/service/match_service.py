@@ -1,6 +1,6 @@
 from typing import List
 
-from model.match import Match
+from py_elo_db.model.match import Match
 
 
 def get_all_ordered() -> List[Match]:
