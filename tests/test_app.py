@@ -1,4 +1,4 @@
-from py-elo-db import app
+from py_elo_db import app
 
 def test_win_probability():
     prob1, prob2 = app.win_probability(1000.0, 1000.0)
