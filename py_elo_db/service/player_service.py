@@ -1,10 +1,10 @@
-from typing import Any, Tuple
+from typing import List, Tuple
 
-from model.player import Player
-from util import out_util
+from py_elo_db.model.player import Player
+from py_elo_db.util import out_util
 
 
-def get_all_ordered() -> Any:
+def get_all_ordered() -> List[Player]:
     """Retrieve all players ordered by rank field."""
     return Player.select().order_by(-Player.rank)
 

@@ -1,7 +1,7 @@
-from typing import Any
+from typing import List
 
-from model.match import Match
-from model.player import Player
+from py_elo_db.model.match import Match
+from py_elo_db.model.player import Player
 
 
 def print_help() -> None:
@@ -27,7 +27,7 @@ def print_no_file(path: str) -> None:
     print('\tError - file does not exist:', path)
 
 
-def print_stats(players: Any) -> None:
+def print_stats(players: List[Player]) -> None:
     """Print player statistics."""
     player_list = sorted(players, key=lambda player:
                          round(player.wins / (player.wins + player.losses), 3),
@@ -45,7 +45,7 @@ def print_stats(players: Any) -> None:
     print()
 
 
-def print_ratings(players: Any) -> None:
+def print_ratings(players: List[Player]) -> None:
     """Print player elo ratings."""
     player_list = sorted(players, key=lambda player: player.elo, reverse=True)
 
@@ -58,7 +58,7 @@ def print_ratings(players: Any) -> None:
     print()
 
 
-def print_matches(matches: Any) -> None:
+def print_matches(matches: List[Match]) -> None:
     """Print matches."""
     print()
     print('Matches')
@@ -103,4 +103,4 @@ def print_match_recorded(match: Match) -> None:
               match.away_score, match.away_player.name, 'SD')
     else:
         print('Matched Recorded,', match.home_player.name, match.home_score,
-              mathc.away_score, match.away_player.name)
+              match.away_score, match.away_player.name)
