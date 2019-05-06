@@ -17,7 +17,7 @@ def test_score_weight():
 
 def test_calculate_elo():
     elo = app.calculate_elo(1000.0, 0.5, 1, 0.5)
-    assert elo = 1000.0
+    assert elo == 1000.0
 
 def test_update_elos():
     pass
