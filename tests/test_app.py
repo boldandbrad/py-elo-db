@@ -30,21 +30,20 @@ def test_update_stats():
     player1 = Player(name='p1')
     player2 = Player(name='p2')
     app.update_stats(player1, player2, 3, 1)
-    print(player1.elo, player2.elo)
 
     assert player1.wins == 1
     assert player1.losses == 0
     assert player1.draws == 0
     assert player1.goals_for == 3
     assert player1.goals_against == 1
-    # assert player1.elo == 
+    assert player1.elo > 1000.0 
 
     assert player2.wins == 0
     assert player2.losses == 1
     assert player2.draws == 0
     assert player2.goals_for == 1
     assert player2.goals_against == 3
-    # assert player2.elo ==
+    assert player2.elo < 1000.0
 
 def test_recalculate():
     pass
