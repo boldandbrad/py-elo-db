@@ -22,7 +22,7 @@ nosetests
 
 ## Usages
 ```bash
-python3 main.py --help
+python3 app.py --help
 ```
 
 ## Examples
@@ -30,13 +30,13 @@ The quickest way to get going with py-elo-db is to add the outcome of a match. T
 
 A match can be added with `-m` or `--match`:
 ```bash
-python3 main.py -m "Bulldogs 4 3 Grizzlies"
+python3 app.py -m "Bulldogs 4 3 Grizzlies"
 ```
 This will create and store new entries for Bulldogs and Grizzlies in the Player table, as well as a new record in the Match table with the score and other relevant data.
 
 Optionally, you can add `SD` to denote the game went to sudden death overtime:
 ```bash
-python3 main.py -m "Bulldogs 4 3 Grizzlies SD"
+python3 app.py -m "Bulldogs 4 3 Grizzlies SD"
 ```
 
 ## License
