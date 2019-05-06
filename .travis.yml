@@ -10,5 +10,5 @@ addons:
       secure: "Hd9K8LARMcZVs0fwNVcPzxNw/nlM0Y+gPKmQ7d+grUGpKYjNPpTuZU7w/BnwCoceVFeaa49vVJHVH2x3C5ditXibY+JoPk06obRpKVE5AjU0GBB74nxPLzUEG/7kTvqiHbBC2a+t+EWM6R6TtClxLxqdSJ+398ig2DD+pkQGCNU8+F+e/8QNgqa3cb23iNvaQTjAFJ3pYFmzfPtxn15FRpEUhQkE7RAc/D1zrytOC7gCNUqnGA92FD4cwk5DjV1MB8ORCQJXW/zUfchpLR1qRMYP2Uksgs9bFUJwzQmj1jxbHGb4gS/IdDPgGrLyHGo3URdZcB79kNQaQ6l6PoeVAZatjVmMHJTpAUBJEN8AYat63pUQmxTSpN+QgU7EUmVieFp3gKdhwyT75Pm2qP49V3oOKWr0flZMJ/GddX2WkjLLv4eatqFF4GJnPjNJOf3XQYWpN073Tao6dJhAFh8qOF752GUddMVSJRHh4d8ONK2h3qf3p2y30SI40ZubSAu1XtrGFbjNPHongJa75oHIoSPrpctF2VBhPWOwfJSRcZL0HCD8C64ZUsk6JU1c/OyanKW0EqaF5LaAdnOzhJuUG9kfp9jXUyInkLrkQq6SfYVRYTw/KbPZHiw30zkV/i4S/zmkpIfGYx4XmDFdxxqswHc6cpDMy3E0Vhflj+NEeqk="
 
 script:
-  - nosetests -v --with-coverage
+  - nosetests -v --with-coverage --cover-xml-file
   - sonar-scanner
