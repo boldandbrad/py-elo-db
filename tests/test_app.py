@@ -1,4 +1,5 @@
 from py_elo_db import app
+from py_elo_db.model.player import Player
 
 def test_win_probability():
     prob1, prob2 = app.win_probability(1000.0, 1000.0)
@@ -20,10 +21,30 @@ def test_calculate_elo():
     assert elo == 1000.0
 
 def test_update_elos():
-    pass
+    elo1, elo2, change = app.update_elos(1000.0, 1000.0, 1, 1)
+    assert elo1 == 1000.0
+    assert elo2 == 1000.0
+    assert change == 0.0
 
 def test_update_stats():
-    pass
+    player1 = Player(name='p1')
+    player2 = Player(name='p2')
+    app.update_stats(player1, player2, 3, 1)
+    print(player1.elo, player2.elo)
+
+    assert player1.wins == 1
+    assert player1.losses == 0
+    assert player1.draws == 0
+    assert player1.goals_for == 3
+    assert player1.goals_against == 1
+    # assert player1.elo == 
+
+    assert player2.wins == 0
+    assert player1.losses == 1
+    assert player1.draws == 0
+    assert player1.goals_for == 1
+    assert player1.goals_against == 3
+    # assert player2.elo ==
 
 def test_recalculate():
     pass
