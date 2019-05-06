@@ -1,5 +1,7 @@
 # Py-Elo-DB
 
+[![Build Status](https://travis-ci.org/bradleycwojcik/py-elo-db.svg?branch=master)](https://travis-ci.org/bradleycwojcik/py-elo-db)
+
 py-elo is a python tool for calculating and storing elo values and statistics for two sided match-based games. All data is stored in a sqlite database structure that can be easily queried, though py-elo-db will do the heavy lifting for you.
 
 ## Dependencies
@@ -11,6 +13,11 @@ py-elo is a python tool for calculating and storing elo values and statistics fo
 - run: 
 ```bash
 pip3 install -r requirements.txt
+```
+
+## Test
+```
+nosetests
 ```
 
 ## Usages
@@ -31,7 +38,6 @@ Optionally, you can add `SD` to denote the game went to sudden death overtime:
 ```bash
 python3 main.py -m "Bulldogs 4 3 Grizzlies SD"
 ```
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
