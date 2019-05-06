@@ -14,3 +14,21 @@ def test_score_weight():
 
     weight3 = app.score_weight(5, 1)
     assert weight3 == 1.5
+
+def test_calculate_elo():
+    pass
+
+def test_update_elos():
+    pass
+
+def test_update_stats():
+    pass
+
+def test_recalculate():
+    pass
+
+def test_record_match():
+    pass
+
+def test_record_match_file():
+    pass
