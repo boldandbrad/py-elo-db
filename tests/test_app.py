@@ -40,10 +40,10 @@ def test_update_stats():
     # assert player1.elo == 
 
     assert player2.wins == 0
-    assert player1.losses == 1
-    assert player1.draws == 0
-    assert player1.goals_for == 1
-    assert player1.goals_against == 3
+    assert player2.losses == 1
+    assert player2.draws == 0
+    assert player2.goals_for == 1
+    assert player2.goals_against == 3
     # assert player2.elo ==
 
 def test_recalculate():
