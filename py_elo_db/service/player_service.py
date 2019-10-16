@@ -1,7 +1,7 @@
-from typing import List, Tuple
+from typing import List
 
-from py_elo_db.model.player import Player
-from py_elo_db.util import out_util
+from model.player import Player
+from util import out_util
 
 
 def get_all_ordered() -> List[Player]:
@@ -22,7 +22,7 @@ def get_by_name(name: str) -> Player:
 def get_or_create_by_name(name: str) -> Player:
     """Retrieve a player by its name field, create if does not exist."""
     player, created = Player.get_or_create(name=name)
-    if (created):
+    if created:
         out_util.print_player_create(player)
     else:
         out_util.print_player_retrieved(player)

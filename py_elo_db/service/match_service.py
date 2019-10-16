@@ -1,6 +1,6 @@
 from typing import List
 
-from py_elo_db.model.match import Match
+from model.match import Match
 
 
 def get_all_ordered() -> List[Match]:
@@ -24,6 +24,6 @@ def get_by_number(number: int) -> Match:
     return Match.select().where(Match.number == number).get()
 
 
-def save(match: Match) -> Match:
+def save(match: Match) -> None:
     """Persist new match to database."""
     match.save()

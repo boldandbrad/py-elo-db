@@ -1,6 +1,6 @@
 from peewee import *
 
-db = SqliteDatabase('./database.db', pragmas={'foreign_keys': 1})
+db = SqliteDatabase('../database.db', pragmas={'foreign_keys': 1})
 
 
 class Base(Model):
@@ -12,7 +12,7 @@ class Base(Model):
     def __str__(self):
         return str(self.__dict__)
 
-    class Meta():
+    class Meta:
         """Define database table options."""
         database = db
         legacy_table_names = False

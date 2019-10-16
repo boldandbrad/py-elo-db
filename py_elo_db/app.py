@@ -4,11 +4,11 @@ import os
 import sys
 from typing import Tuple
 
-from .model.base import db
-from .model.match import Match
-from .model.player import Player
-from .service import match_service, player_service
-from .util import db_util, out_util
+from model.base import db
+from model.match import Match
+from model.player import Player
+from service import match_service, player_service
+from util import db_util, out_util
 
 __license__ = "MIT"
 __version__ = 1.0
@@ -27,9 +27,9 @@ def score_weight(home_score: int, away_score: int) -> float:
     """Calculate score difference weight to be applied."""
     score_diff = abs(home_score - away_score)
 
-    if (score_diff == 0 or score_diff == 1):
+    if score_diff == 0 or score_diff == 1:
         return 1
-    elif (score_diff == 2):
+    elif score_diff == 2:
         return 1.25
     else:
         return (11 + score_diff) / 10
@@ -50,11 +50,11 @@ def update_elos(home_elo: float, away_elo: float, home_score: int,
     diff = score_weight(home_score, away_score)
 
     # home won
-    if (home_score > away_score):
+    if home_score > away_score:
         home_elo = calculate_elo(home_elo, home_prob, diff, 1)
         away_elo = calculate_elo(away_elo, away_prob, diff, 0)
     # away won
-    elif (home_score < away_score):
+    elif home_score < away_score:
         home_elo = calculate_elo(home_elo, home_prob, diff, 0)
         away_elo = calculate_elo(away_elo, away_prob, diff, 1)
     # draw
@@ -74,11 +74,11 @@ def update_stats(home_player: Player, away_player: Player,
     away_player.goals_against += home_score
 
     # home won
-    if (home_score > away_score):
+    if home_score > away_score:
         home_player.wins += 1
         away_player.losses += 1
     # away won
-    elif (home_score < away_score):
+    elif home_score < away_score:
         home_player.losses += 1
         away_player.wins += 1
     # draw
@@ -93,7 +93,7 @@ def recalculate() -> None:
 
 
 def record_match(home_name: str, away_name: str, home_score: int,
-                 away_score: int, sudden_death: bool=False) -> None:
+                 away_score: int, sudden_death: bool = False) -> None:
     """Record new match in database and update players."""
     out_util.print_recording_match()
 
@@ -175,18 +175,18 @@ def main(argv) -> None:
                 out_util.print_help()
                 sys.exit()
         elif opt in ("-f", "--file"):
-            if (os.path.isfile(arg)):
+            if os.path.isfile(arg):
                 record_match_file(arg)
             else:
                 out_util.print_no_file(arg)
                 sys.exit()
-        elif opt in ("--stats"):
+        elif opt in "--stats":
             players = player_service.get_all_ordered()
             out_util.print_stats(players)
-        elif opt in ("--ratings"):
+        elif opt in "--ratings":
             players = player_service.get_all_ordered()
             out_util.print_ratings(players)
-        elif opt in ("--matches"):
+        elif opt in "--matches":
             matches = match_service.get_all_ordered()
             out_util.print_matches(matches)
         elif opt in ("-v", "--version"):
@@ -197,5 +197,5 @@ def main(argv) -> None:
     sys.exit()
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     main(sys.argv[1:])

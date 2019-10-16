@@ -1,7 +1,7 @@
 from typing import List
 
-from py_elo_db.model.match import Match
-from py_elo_db.model.player import Player
+from model.match import Match
+from model.player import Player
 
 
 def print_help() -> None:
@@ -98,7 +98,7 @@ def print_recording_match() -> None:
 
 def print_match_recorded(match: Match) -> None:
     """Print match recorded message."""
-    if (match.sudden_death):
+    if match.sudden_death:
         print('Matched Recorded,', match.home_player.name, match.home_score,
               match.away_score, match.away_player.name, 'SD')
     else:
