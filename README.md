@@ -5,6 +5,7 @@
 py-elo is a python tool for calculating and storing elo values and statistics for two sided match-based games. All data is stored in a sqlite database structure that can be easily queried, though py-elo-db will do the heavy lifting for you.
 
 ## Dependencies
+- click
 - peewee
 
 ## Installation
