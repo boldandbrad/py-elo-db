@@ -6,6 +6,8 @@ db = SqliteDatabase('../database.db', pragmas={'foreign_keys': 1})
 class Base(Model):
     """Base peewee database model class."""
 
+    id = AutoField()
+
     def __repr__(self):
         return str(self.__dict__)
 

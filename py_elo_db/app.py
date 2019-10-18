@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import getopt
 import math
 import os
@@ -101,11 +103,11 @@ def record_match(home_name: str, away_name: str, home_score: int,
     away_player = player_service.get_or_create_by_name(away_name)
 
     home_player.elo, away_player.elo, rating_change = update_elos(
-                                                            home_player.elo,
-                                                            away_player.elo,
-                                                            home_score,
-                                                            away_score
-                                                        )
+        home_player.elo,
+        away_player.elo,
+        home_score,
+        away_score
+    )
 
     update_stats(home_player, away_player, home_score, away_score)
 
@@ -168,7 +170,7 @@ def main(argv) -> None:
             if len(match) is 4 and match[1].isdigit() and match[2].isdigit():
                 record_match(match[0], match[3], int(match[1]), int(match[2]))
             elif (len(match) is 5 and match[1].isdigit() and
-                    match[2].isdigit() and match[4].lower() == 'sd'):
+                  match[2].isdigit() and match[4].lower() == 'sd'):
                 record_match(match[0], match[3], int(match[1]), int(match[2]),
                              True)
             else:
